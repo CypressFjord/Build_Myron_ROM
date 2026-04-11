@@ -1,0 +1,166 @@
+{
+  "localId": "5256e0fa-46dd-408f-875b-ed60636e4dbb",
+  "onlineId": null,
+  "assemblyId": null,
+  "productId": null,
+  "hash": "beb27f838c83957950b3810e2a3a95cdfe5960a0",
+  "platform": 17,
+  "size": 28946994,
+  "updatedTime": 0,
+  "version": "2.3",
+  "authors": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "designers": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "titles": {
+    "zh_HK": "徠卡生動",
+    "zh_TW": "徠卡生動",
+    "bo_CN": "Leicaགསོན་ཉམས་ལྡན་པའི་ཁྱད་ཆོས།",
+    "en_US": "Leica Vibrant",
+    "ug_CN": "Leica جانلىق ئۇسلۇبى",
+    "zh_CN": "徕卡生动",
+    "fallback": "徕卡生动"
+  },
+  "descriptions": {
+    "zh_HK": "傳承徠卡設計，增添鮮明活力，明艷有度",
+    "zh_TW": "傳承徠卡設計，增添鮮明活力，明艷有度",
+    "bo_CN": "རྒྱུན་འཛིན་བྱང་བུའི་ཇུས་འགོད། གསོན་ཤུགས་མངོན་གསལ་སྣོན་པ། མཛེས་སྡུག་ཚད་ཡོད་པ།",
+    "en_US": "Balanced vibrancy that honors Leica Design legacy while adding a vivid touch.",
+    "ug_CN": "لەيكا لايىھەسىگە ۋارىسلىق قىلىپ، روشەن ھاياتىي كۈچ قوشۇپ، يارقىن، لايىقىدا نامايان قىلغان",
+    "zh_CN": "传承徕卡设计，增添鲜明活力，明艳有度",
+    "fallback": "传承徕卡设计，增添鲜明活力，明艳有度"
+  },
+  "builtInThumbnails": {
+    "fallback": [
+      "preview_aod_small_0.jpg",
+      "preview_aod_0.jpg",
+      "preview_lockscreen_0.jpg",
+      "preview_launcher_0.jpg",
+      "preview_launcher_1.jpg",
+      "preview_statusbar_0.jpg",
+      "preview_icons_0.jpg",
+      "preview_icons_1.jpg",
+      "preview_icons_2x3_0.jpg",
+      "preview_icons_4x3_0.jpg",
+      "preview_clock_2x4_0.png",
+      "preview_animation_0.jpg",
+      "preview_animation_1.jpg",
+      "preview_animation_2.jpg"
+    ]
+  },
+  "builtInPreviews": {
+    "fallback": [
+      "preview_aod_0.jpg",
+      "preview_lockscreen_0.jpg",
+      "preview_launcher_0.jpg",
+      "preview_launcher_1.jpg",
+      "preview_statusbar_0.jpg",
+      "preview_icons_0.jpg",
+      "preview_icons_1.jpg",
+      "preview_icons_2x3_0.jpg",
+      "preview_icons_4x3_0.jpg",
+      "preview_clock_2x4_0.png",
+      "preview_animation_0.jpg",
+      "preview_animation_1.jpg",
+      "preview_animation_2.jpg"
+    ]
+  },
+  "thumbnails": [],
+  "previews": [],
+  "parentResources": [],
+  "subResources": [
+    {
+      "localId": "7596ff68-14f1-42eb-ac55-a15810804272",
+      "resourceCode": "wallpaper",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "6c0c739f-0703-48b3-bf2b-a4d2d0547e15",
+      "resourceCode": "lockstyle",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "4ece7e0b-4e91-45da-b32d-d27b29eaa86e",
+      "resourceCode": "bootanimation",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "f378f2c0-7d78-473a-9f78-273afbbf0ac0",
+      "resourceCode": "launcher",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "fea03191-1ba4-4941-9767-3fa41507be98",
+      "resourceCode": "lockscreen",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "a49e1f3e-fd2d-437b-acfa-b6ca411fb1c5",
+      "resourceCode": "aod",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "61e158a0-b795-46c4-9917-a869bae82466",
+      "resourceCode": "LG1056-Regular.otf",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "9f2dc9ee-aa86-4dbb-a268-b9bd0e57247f",
+      "resourceCode": "clock_2x4",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    },
+    {
+      "localId": "e6da348e-5b30-4b22-9d91-fc881136e1f1",
+      "resourceCode": "icons",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    }
+  ],
+  "extraMeta": {},
+  "metaPath": null,
+  "contentPath": null,
+  "rightsPath": "/product/etc/precust_theme/theme/.data/rights/theme/ba850627a933ab7266f416cab6555b5df8d19c4d.mra",
+  "screenRatio": null,
+  "supportHomeSearchBar": false,
+  "packageVersion": null,
+  "packageName": null,
+  "officialIcons": false,
+  "iconsCount": null,
+  "fontWeight": null,
+  "price": -1,
+  "isBackUpVersion": false,
+  "themeType": 0,
+  "miuiAdapterVersion": "3.2",
+  "wallpaperStyle": 30000
+}

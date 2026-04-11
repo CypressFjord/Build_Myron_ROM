@@ -1,0 +1,127 @@
+{
+  "title": "琉璃山谷",
+  "titleResId": "wallpaper_glazed_valley_title",
+  "cardType": 1,
+  "count": 3,
+  "slideCount": 3,
+  "randomOrder": false,
+  "wallpapers": [
+    {
+      "lockFrame": 600,
+      "aodToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "lockToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.4
+      },
+      "lockToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 1.6
+      },
+      "homeToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "homeToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.8
+      },
+      "aodToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.6
+      },
+      "videoPath": "./Canyon01.mp4",
+      "previewPath": "./Canyon01.jpg",
+      "previewName": "Canyon01.mp4",
+      "videoName": "Canyon01.jpg",
+      "videoUrl": "https://f1.market.xiaomi.com/download/ThemeMarket/02b570e4258df43f2916147f0fe616a0d03cf39f4",
+      "sha1": "03cf39f46e4eb7393c89eceb0bcb86f5dbb9e669"
+    },
+    {
+       "aodToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "lockToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.4
+      },
+      "lockToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 1.6
+      },
+      "homeToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "homeToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.8
+      },
+      "aodToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.6
+      },
+      "lockFrame": 600,
+      "videoPath": "./Canyon02.mp4",
+      "previewPath": "./Canyon02.jpg",
+      "previewName": "Canyon02.mp4",
+      "videoName": "Canyon02.jpg",
+      "videoUrl": "https://f3.market.xiaomi.com/download/ThemeMarket/05c79885f381741f0b4ecde828d504571aa338ea9",
+      "sha1": "aa338ea973778e54eac8c2b49f1b037070dbdf84"
+    },
+    {
+       "aodToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "lockToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.4
+      },
+      "lockToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 1.6
+      },
+      "homeToLockAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2
+      },
+      "homeToAodAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.8
+      },
+      "aodToHomeAnim": {
+        "type": "spring",
+        "damping": 1,
+        "response": 2.6
+      },
+      "lockFrame": 600,
+      "videoPath": "./Canyon03.mp4",
+      "previewPath": "./Canyon03.jpg",
+      "previewName": "Canyon03.mp4",
+      "videoName": "Canyon03.jpg",
+      "videoUrl": "https://f5.market.xiaomi.com/download/ThemeMarket/093e9dc1f64d647a9ba52846b7fec209d2f286e60",
+      "sha1": "2f286e60fe5419a96ff3101434affdf992c56219"
+    }
+  ]
+}

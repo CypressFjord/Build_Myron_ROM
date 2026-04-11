@@ -1,0 +1,51 @@
+name: Build_Myron_ROM
+on:
+  workflow_dispatch:
+    inputs:
+      VENDOR_URL:
+        description: "系统下载地址"
+        required: true
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: 最大化构建环境
+        uses: easimon/maximize-build-space@master
+        with:
+          swap-size-mb: 8192
+          root-reserve-mb: 8192
+          temp-reserve-mb: 2048
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+      - name: 检出仓库文件
+        uses: actions/checkout@main
+      - name: 准备所需环境
+        run: |
+          sudo timedatectl set-timezone Asia/Shanghai
+          sudo apt-get install python3 aria2 p7zip-full zstd
+          sudo pip install google protobuf
+      - name: 构建 ROM
+        run: |
+          sudo bash "$GITHUB_WORKSPACE"/make.sh ${{ github.event.inputs.VENDOR_URL }} $GITHUB_ENV $GITHUB_WORKSPACE
+      - name: 处理 ROM
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE"/GithubRelease
+          cd "$GITHUB_WORKSPACE"/GithubRelease
+          sudo split -b 1536M -d "$GITHUB_WORKSPACE"/zip/${{ env.rom_name }} ${{ env.rom_name }}
+          cd "$GITHUB_WORKSPACE"
+          touch file.log
+          echo -e "机型代号: myron\n机型名称: REDMI K90 Pro Max\n\n系统版本: ${{ env.vendor_os_version }}\n系统System安全补丁日期: ${{ env.port_security_patch }}\n系统Vendor安全补丁日期: ${{ env.vendor_security_patch }}\n系统Vendor基线版本: ${{ env.vendor_base_line}}\n\n系统原ROM下载地址: ${{ github.event.inputs.VENDOR_URL }}" > file.log
+      - name: 上传到 Github Release
+        uses: ncipollo/release-action@main
+        with:
+          artifacts: ${{ github.workspace }}/GithubRelease/*
+          name: ${{ env.vendor_os_version }}
+          tag: ${{ env.vendor_os_version }}
+          bodyFile: "${{ github.workspace }}/file.log"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,84 @@
+{
+  "localId": "fea03191-1ba4-4941-9767-3fa41507be98",
+  "onlineId": null,
+  "assemblyId": null,
+  "productId": null,
+  "hash": "6e44f9574892f1c39f038cd4d476bb1daac0d51c",
+  "platform": 17,
+  "size": 1395102,
+  "updatedTime": 0,
+  "version": "2.3",
+  "authors": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "designers": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "titles": {
+    "zh_HK": "徠卡生動",
+    "zh_TW": "徠卡生動",
+    "bo_CN": "Leicaགསོན་ཉམས་ལྡན་པའི་ཁྱད་ཆོས།",
+    "en_US": "Leica Vibrant",
+    "ug_CN": "Leica جانلىق ئۇسلۇبى",
+    "zh_CN": "徕卡生动",
+    "fallback": "徕卡生动"
+  },
+  "descriptions": {
+    "zh_HK": "傳承徠卡設計，增添鮮明活力，明艷有度",
+    "zh_TW": "傳承徠卡設計，增添鮮明活力，明艷有度",
+    "bo_CN": "རྒྱུན་འཛིན་བྱང་བུའི་ཇུས་འགོད། གསོན་ཤུགས་མངོན་གསལ་སྣོན་པ། མཛེས་སྡུག་ཚད་ཡོད་པ།",
+    "en_US": "Balanced vibrancy that honors Leica Design legacy while adding a vivid touch.",
+    "ug_CN": "لەيكا لايىھەسىگە ۋارىسلىق قىلىپ، روشەن ھاياتىي كۈچ قوشۇپ، يارقىن، لايىقىدا نامايان قىلغان",
+    "zh_CN": "传承徕卡设计，增添鲜明活力，明艳有度",
+    "fallback": "传承徕卡设计，增添鲜明活力，明艳有度"
+  },
+  "builtInThumbnails": {
+    "fallback": [
+      "preview_lockscreen_0.jpg"
+    ]
+  },
+  "builtInPreviews": {
+    "fallback": [
+      "preview_lockscreen_0.jpg"
+    ]
+  },
+  "thumbnails": [],
+  "previews": [],
+  "parentResources": [
+    {
+      "localId": "5256e0fa-46dd-408f-875b-ed60636e4dbb",
+      "resourceCode": "theme",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    }
+  ],
+  "subResources": [],
+  "extraMeta": {},
+  "metaPath": null,
+  "contentPath": null,
+  "rightsPath": "/product/etc/precust_theme/theme/.data/rights/theme/ba850627a933ab7266f416cab6555b5df8d19c4d.mra",
+  "screenRatio": null,
+  "supportHomeSearchBar": false,
+  "packageVersion": null,
+  "packageName": null,
+  "officialIcons": false,
+  "iconsCount": null,
+  "fontWeight": null,
+  "price": -1,
+  "isBackUpVersion": false,
+  "themeType": 0,
+  "miuiAdapterVersion": "3.2"
+}
