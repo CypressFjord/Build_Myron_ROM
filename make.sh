@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VENDOR_URL="$1"       # 底包下载地址
+VENDOR_URL="$1"       # 系统下载地址
 GITHUB_ENV="$2"       # 输出环境变量
 GITHUB_WORKSPACE="$3" # 工作目录
 
@@ -91,13 +91,13 @@ mkdir -p "$GITHUB_WORKSPACE"/super
 mkdir -p "$GITHUB_WORKSPACE"/Extra_dir
 mkdir -p "$GITHUB_WORKSPACE"/zip
 
-echo -e "${Yellow}- 开始解压底包"
+echo -e "${Yellow}- 开始解压ROM"
 Start_Time
 $a7z x "$GITHUB_WORKSPACE"/${vendor_zip_name} -o"$GITHUB_WORKSPACE"/vendor_zip payload.bin >/dev/null
 rm -rf "$GITHUB_WORKSPACE"/${vendor_zip_name}
-End_Time 解压底包
+End_Time 解压ROM
 
-echo -e "${Red}- 开始解底包 Payload"
+echo -e "${Red}- 开始解ROM Payload"
 $payload_extract -s -o "$GITHUB_WORKSPACE"/firmware/images -i "$GITHUB_WORKSPACE"/vendor_zip/payload.bin -X abl,aop,aop_config,bluetooth,boot,countrycode,cpucp,cpucp_dtb,dcp,devcfg,dsp,dtbo,featenabler,hyp,hyp_ac_config,idmanager,imagefv,keymaster,modem,modemfirmware,multiimgqti,pdp,pdp_cdb,pvmfw,qtvm_dtbo,qupfw,secretkeeper,shrm,soccp,soccp_dcd,soccp_debug,spuservice,tme_config,tme_fw,tme_seq_patch,tz,tz_ac_config,tz_qti_config,uefi,uefisecapp,vbmeta_system,vendor_boot,vm-bootsys,xbl,xbl_ac_config,xbl_config,xbl_ramdump -T0
 $payload_extract -s -o "$GITHUB_WORKSPACE"/Extra_dir -i "$GITHUB_WORKSPACE"/vendor_zip/payload.bin -X system,system_ext,product,mi_ext,system_dlkm,vendor,odm,vendor_dlkm -T0
 sudo rm -rf "$GITHUB_WORKSPACE"/vendor_zip/payload.bin
