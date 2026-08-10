@@ -1,0 +1,105 @@
+name: Build_Myron_ROM
+on:
+  workflow_dispatch:
+    inputs:
+      URL:
+        description: "系统包下载地址"
+        required: true
+      TAG_SUFFIX:
+        description: "版本标签(不能有空格,特殊字符等)"
+        required: false
+      UPLOAD_GITHUB:
+        description: "是否上传到 Github Release"
+        required: true
+        type: boolean
+        default: true
+      UPLOAD_GDRIVE:
+        description: "是否上传到 Google Drive"
+        required: true
+        type: boolean
+        default: true
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: 最大化构建环境
+        uses: easimon/maximize-build-space@master
+        with:
+          swap-size-mb: 8192
+          root-reserve-mb: 8192
+          temp-reserve-mb: 2048
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+      - name: 检出仓库文件
+        uses: actions/checkout@main
+      - name: 准备所需环境
+        run: |
+          sudo timedatectl set-timezone Asia/Shanghai
+          sudo apt-get install python3 aria2 p7zip-full zstd
+          sudo pip install google protobuf
+      - name: 构建 ROM
+        run: |
+          sudo bash "$GITHUB_WORKSPACE"/make.sh ${{ github.event.inputs.URL }} $GITHUB_ENV $GITHUB_WORKSPACE
+      - name: 处理 ROM
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE"/GithubRelease
+          cd "$GITHUB_WORKSPACE"/GithubRelease
+          sudo split -b 1536M -d "$GITHUB_WORKSPACE"/zip/${{ env.rom_name }} ${{ env.rom_name }}
+          cd "$GITHUB_WORKSPACE"
+          touch file.log
+          echo -e "ROM构建日期: ${{ env.build_time }}\n\n系统包机型代号: myron\n系统包机型名称: REDMI K90 Pro Max\n\n系统包SOTA版本: ${{ env.incremental_version }}\n系统包系统版本: ${{ env.vendor_os_version }}\n系统包系统System安全补丁日期: ${{ env.port_security_patch }}\n系统包系统Vendor安全补丁日期: ${{ env.vendor_security_patch }}\n系统包System基线版本: ${{ env.system_base_line}}\n系统Vendor基线版本: ${{ env.vendor_base_line}}\n\n系统包ROM下载地址: ${{ github.event.inputs.URL }}" > file.log
+      - name: 生成版本标签
+        env:
+          RAW_SUFFIX: ${{ github.event.inputs.TAG_SUFFIX }}
+        run: |
+          suffix=$(printf '%s' "$RAW_SUFFIX" | tr -c 'A-Za-z0-9._-' '-' | sed 's/^-*//; s/-*$//')
+          if [ -n "$suffix" ]; then
+            old_name="${{ env.rom_name }}"
+            new_name="${old_name%.zip}-${suffix}.zip"
+            sudo mv "$GITHUB_WORKSPACE/zip/${old_name}" "$GITHUB_WORKSPACE/zip/${new_name}"
+            rm -rf "$GITHUB_WORKSPACE/GithubRelease"
+            mkdir -p "$GITHUB_WORKSPACE/GithubRelease"
+            sudo split -b 1536M -d "$GITHUB_WORKSPACE/zip/${new_name}" "$GITHUB_WORKSPACE/GithubRelease/${new_name}"
+            echo "rom_name=${new_name}" >> "$GITHUB_ENV"
+            echo "release_tag=${{ env.vendor_os_version }}-${suffix}" >> "$GITHUB_ENV"
+          else
+            echo "release_tag=${{ env.vendor_os_version }}" >> "$GITHUB_ENV"
+          fi
+      - name: 上传到 Github Release
+        if: ${{ inputs.UPLOAD_GITHUB }}
+        uses: ncipollo/release-action@main
+        with:
+          artifacts: ${{ github.workspace }}/GithubRelease/*
+          name: ${{ env.release_tag }}
+          tag: ${{ env.release_tag }}
+          bodyFile: "${{ github.workspace }}/file.log"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # ── 上传到 Google Drive ──
+      - name: 安装 rclone
+        if: ${{ inputs.UPLOAD_GDRIVE }}
+        run: curl https://rclone.org/install.sh | sudo bash
+      - name: 上传 ZIP 到 Google Drive
+        if: ${{ inputs.UPLOAD_GDRIVE }}
+        env:
+          RCLONE_CONF: ${{ secrets.RCLONE_CONF }}
+        run: |
+          mkdir -p ~/.config/rclone
+          printf '%s' "$RCLONE_CONF" > ~/.config/rclone/rclone.conf
+          chmod 600 ~/.config/rclone/rclone.conf
+          rclone copyto "$GITHUB_WORKSPACE/zip/${{ env.rom_name }}" \
+            "gdrive:${{ env.rom_name }}" \
+            --drive-root-folder-id ${{ secrets.GDRIVE_FOLDER_ID }} \
+            --drive-chunk-size 128M \
+            --transfers 1 \
+            --retries 5 \
+            --retries-sleep 30s \
+            --timeout 600s \
+            --low-level-retries 10 \
+            --progress \
+            --log-level INFO

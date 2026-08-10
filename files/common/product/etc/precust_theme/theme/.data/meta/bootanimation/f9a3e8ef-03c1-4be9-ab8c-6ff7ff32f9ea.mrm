@@ -1,0 +1,88 @@
+{
+  "localId": "f9a3e8ef-03c1-4be9-ab8c-6ff7ff32f9ea",
+  "onlineId": null,
+  "assemblyId": null,
+  "productId": null,
+  "hash": "2e0da5ae8e30da40f5b5aa68b86299c65162fafb",
+  "platform": 17,
+  "size": 600760,
+  "updatedTime": 0,
+  "version": "2.3",
+  "authors": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "designers": {
+    "zh_HK": "小米主題",
+    "zh_TW": "小米主題",
+    "bo_CN": "ཞའོ་མཱི་གཙོ་དོན།",
+    "en_US": "Xiaomi Themes",
+    "ug_CN": "شياۋمى ئۇسلۇبى",
+    "zh_CN": "小米主题",
+    "fallback": "小米主题"
+  },
+  "titles": {
+    "zh_HK": "徠卡經典",
+    "zh_TW": "徠卡經典",
+    "bo_CN": "Leicaགསུང་རབ་ཀྱི་ཁྱད་ཆོས།",
+    "en_US": "Leica Authentic",
+    "ug_CN": "Leica كلاسسىك ئۇسلۇبى",
+    "zh_CN": "徕卡经典",
+    "fallback": "徕卡经典"
+  },
+  "descriptions": {
+    "zh_HK": "簡潔、永恆而優雅的設計，回歸本真",
+    "zh_TW": "簡潔、永恆而優雅的設計，回歸本真",
+    "bo_CN": "སྟབས་བདེ། རྟག་བརྟན་དང་སྙན་འཇེབས་ཀྱི་ཇུས་འགོད། ཕྱིར་ལོག་པའི་རྩ་བ།",
+    "en_US": "A clean, timeless and elegant design, reduced to what is essential.",
+    "ug_CN": "ئىخچام، مەڭگۈلۈك ھەم نەپىس لايىھە، ئۆز ھالىتىگە قايتىدۇ",
+    "zh_CN": "简洁、永恒而优雅的设计，回归本真",
+    "fallback": "简洁、永恒而优雅的设计，回归本真"
+  },
+  "builtInThumbnails": {
+    "fallback": [
+      "preview_animation_0.jpg",
+      "preview_animation_1.jpg",
+      "preview_animation_2.jpg"
+    ]
+  },
+  "builtInPreviews": {
+    "fallback": [
+      "preview_animation_0.jpg",
+      "preview_animation_1.jpg",
+      "preview_animation_2.jpg"
+    ]
+  },
+  "thumbnails": [],
+  "previews": [],
+  "parentResources": [
+    {
+      "localId": "3ab8c46e-141e-4fec-b55b-5cf05c412f47",
+      "resourceCode": "theme",
+      "extraMeta": {},
+      "metaPath": null,
+      "contentPath": null
+    }
+  ],
+  "subResources": [],
+  "extraMeta": {},
+  "metaPath": null,
+  "contentPath": null,
+  "rightsPath": "/product/etc/precust_theme/theme/.data/rights/theme/2b7e1d0e0b1aa2c82279da26357fbcc9b4767524.mra",
+  "screenRatio": null,
+  "supportHomeSearchBar": false,
+  "packageVersion": null,
+  "packageName": null,
+  "officialIcons": false,
+  "iconsCount": null,
+  "fontWeight": null,
+  "price": -1,
+  "isBackUpVersion": false,
+  "themeType": 0,
+  "miuiAdapterVersion": "3.2"
+}
