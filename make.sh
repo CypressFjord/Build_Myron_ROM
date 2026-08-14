@@ -359,10 +359,15 @@ echo -e "${Red}- 开始处理cpq调速器${NC}"
 Start_Time
 RC_FILE="$GITHUB_WORKSPACE/images/vendor/etc/init/hw/init.qti.kernel.rc"
 ANCHOR='write /sys/block/sda/queue/scheduler cpq'
-grep -qF "$ANCHOR" "$RC_FILE" || echo -e "${Yellow}- 警告: 未找到cpq锚点${NC}"
-sed -i "/${ANCHOR//\//\\/}/a\\
+if [ -f "$RC_FILE" ] && grep -qF 'iosched/read_expire 4' "$RC_FILE"; then
+    echo -e "${Yellow}- 跳过: cpq调速器参数已处理过${NC}"
+elif [ -f "$RC_FILE" ] && grep -qF "$ANCHOR" "$RC_FILE"; then
+    sed -i "/${ANCHOR//\//\\/}/a\\
     write /sys/block/sda/queue/iosched/prio_aging_expire 200" "$RC_FILE"
-echo -e "${Green}- cpq调速器处理完成${NC}"
+    echo -e "${Green}- 成功处理cpq调速器${NC}"
+else
+    echo -e "${Yellow}- 警告: 未找到cpq锚点或文件不存在${NC}"
+fi
 End_Time 处理cpq调速器
 #关闭F2FS iostat减少读写时锁争用
 Start_Time
