@@ -57,12 +57,6 @@ sys.haptic.lowPowerMode=true
 sys.haptic.onetrack=true
 #启用触感UI2.0
 sys.haptic.slide_version=2.0
-#预加载
-persist.sys.prestart.proc=false
-persist.sys.preload.enable=false
-persist.sys.prestart.feedback.enable=false
-persist.sys.launch_response_optimization.enable=false
-persist.sys.precache.enable=false
 #Bootloader
 ro.boot.flash.locked=1
 ro.boot.verifiedbootstate=green
