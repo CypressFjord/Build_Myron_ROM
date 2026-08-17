@@ -372,7 +372,7 @@ End_Time 处理cpq调速器
 #关闭F2FS iostat减少读写时锁争用
 Start_Time
 echo -e "${Red}- 开始关闭F2FS iostat减少读写时锁争用${NC}"
-INIT_RC="$GITHUB_WORKSPACE/images/system/system/etc/init/hw/init.rc"
+INIT_RC="$GITHUB_WORKSPACE"/images/system/system/etc/init/hw/init.rc
 grep -qF "iostat" "$INIT_RC" || echo -e "${Yellow}- 警告: 未找到iostat相关行${NC}"
 sed -i '/write \/dev\/sys\/fs\/by-name\/userdata\/iostat_period_ms 1000/d' "$INIT_RC"
 sed -i '/write \/dev\/sys\/fs\/by-name\/userdata\/iostat_enable 1/d' "$INIT_RC"
