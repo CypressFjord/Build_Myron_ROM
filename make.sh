@@ -30,9 +30,9 @@ magiskboot="$GITHUB_WORKSPACE"/tools/magiskboot
 mke2fs="$GITHUB_WORKSPACE"/tools/mke2fs
 erofs_mkfs="$GITHUB_WORKSPACE"/tools/mkfs.erofs
 payload_extract="$GITHUB_WORKSPACE"/tools/payload_extract
-ksud="$GITHUB_WORKSPACE"/tools/ksu_lkm_patch/ksud
-ksuinit="$GITHUB_WORKSPACE/tools/ksu_lkm_patch/ksuinit"
-ksu_ko="$GITHUB_WORKSPACE/tools/ksu_lkm_patch/android16-6.12_kernelsu.ko"
+ksud="$GITHUB_WORKSPACE"/tools/ksu_lkm_patch/ksud-x86_64-unknown-linux-musl
+ksuinit="$GITHUB_WORKSPACE"/tools/ksu_lkm_patch/ksuinit-aarch64
+ksu_ko="$GITHUB_WORKSPACE"/tools/ksu_lkm_patch/lkm-aarch64-android16-6.12_kernelsu.ko
 #创建文件夹
 mkdir -p "$GITHUB_WORKSPACE"/tools
 mkdir -p "$GITHUB_WORKSPACE"/firmware
