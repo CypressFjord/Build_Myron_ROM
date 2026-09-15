@@ -332,6 +332,7 @@ if [ -d "$camera_src_dir" ] && ls "$camera_src_dir"/MiuiCamera.apk.part* >/dev/n
             echo -e "${Green}- MiuiCamera.apk合并且完整性校验通过，已成功替换${NC}"
             if [ -d "$camera_src_dir/oat" ]; then
                 cp -rf "$camera_src_dir/oat" "$camera_dst_dir/"
+				cat "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"* > "$camera_dst_dir/oat/arm64/MiuiCamera.odex" && rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"*
                 echo -e "${Green}- MiuiCamera相关oat文件替换成功${NC}"
             fi
         else
@@ -344,6 +345,7 @@ if [ -d "$camera_src_dir" ] && ls "$camera_src_dir"/MiuiCamera.apk.part* >/dev/n
         mv -f "$temp_apk" "$camera_dst_apk"
         if [ -d "$camera_src_dir/oat" ]; then
             cp -rf "$camera_src_dir/oat" "$camera_dst_dir/"
+			cat "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"* > "$camera_dst_dir/oat/arm64/MiuiCamera.odex" && rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"*
             echo -e "${Green}- MiuiCamera相关oat文件替换成功${NC}"
         fi
     fi
