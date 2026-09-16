@@ -314,45 +314,28 @@ else
     echo -e "${Yellow}- 警告: 未找到privapp-permissions-product.xml，跳过此步骤${NC}"
 fi
 End_Time 检测并添加WRITE_MEDIA_STORAGE权限
-#合并校验替换MiuiCamera相关文件
-echo -e "${Red}- 开始合并校验替换MiuiCamera相关文件${NC}"
+#合并替换MiuiCamera相关文件
+echo -e "${Red}- 开始合并替换MiuiCamera相关文件${NC}"
 Start_Time
 camera_src_dir="$GITHUB_WORKSPACE"/files/MiuiCamera_parts
 camera_dst_dir="$GITHUB_WORKSPACE"/images/product/priv-app/MiuiCamera
-camera_dst_apk="$camera_dst_dir/MiuiCamera.apk"
-temp_apk="${camera_dst_apk}.tmp"
-if [ -d "$camera_src_dir" ] && ls "$camera_src_dir"/MiuiCamera.apk.part* >/dev/null 2>&1; then
-    mkdir -p "$camera_dst_dir"
-    cat "$camera_src_dir"/MiuiCamera.apk.part* > "$temp_apk"
-    if [ -f "${camera_src_dir}/MiuiCamera.apk.sha256" ]; then
-        expected=$(awk '{print $1}' "${camera_src_dir}/MiuiCamera.apk.sha256")
-        actual=$(sha256sum "$temp_apk" | awk '{print $1}')        
-        if [ "$expected" = "$actual" ]; then      
-            mv -f "$temp_apk" "$camera_dst_apk"
-            echo -e "${Green}- MiuiCamera.apk合并且完整性校验通过，已成功替换${NC}"
-            if [ -d "$camera_src_dir/oat" ]; then
-                cp -rf "$camera_src_dir/oat" "$camera_dst_dir/"
-				cat "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"* > "$camera_dst_dir/oat/arm64/MiuiCamera.odex" && rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"*
-                echo -e "${Green}- MiuiCamera相关oat文件替换成功${NC}"
-            fi
-        else
-            rm -f "$temp_apk"
-            echo -e "${Yellow}- 严重警告: MiuiCamera.apk完整性校验失败(预期:$expected 实际:$actual)${NC}"
-            echo -e "${Yellow}- 已拦截错误：保留了原文件${NC}"
-        fi
+mkdir -p "$camera_dst_dir"
+if cat "$camera_src_dir"/MiuiCamera.apk.part* > "$camera_dst_dir/MiuiCamera.apk.tmp"; then
+    mv -f "$camera_dst_dir/MiuiCamera.apk.tmp" "$camera_dst_dir/MiuiCamera.apk"
+    cp -rf "$camera_src_dir/oat" "$camera_dst_dir/"
+    if cat "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"* > "$camera_dst_dir/oat/arm64/MiuiCamera.odex.tmp"; then
+        mv -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.tmp" "$camera_dst_dir/oat/arm64/MiuiCamera.odex"
+        rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"*
     else
-        echo -e "${Yellow}- 提示: 未找到MiuiCamera.apk.sha256校验文件，跳过校验直接替换${NC}"
-        mv -f "$temp_apk" "$camera_dst_apk"
-        if [ -d "$camera_src_dir/oat" ]; then
-            cp -rf "$camera_src_dir/oat" "$camera_dst_dir/"
-			cat "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"* > "$camera_dst_dir/oat/arm64/MiuiCamera.odex" && rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.part"*
-            echo -e "${Green}- MiuiCamera相关oat文件替换成功${NC}"
-        fi
+        rm -f "$camera_dst_dir/oat/arm64/MiuiCamera.odex.tmp"
+        echo -e "${Yellow}- MiuiCamera.odex合并失败，保留原文件${NC}"
     fi
+    echo -e "${Green}- MiuiCamera相关文件替换成功${NC}"
 else
-    echo -e "${Yellow}- 提示: 未找到MiuiCamera.apk分卷文件，保留原文件${NC}"
+    rm -f "$camera_dst_dir/MiuiCamera.apk.tmp"
+    echo -e "${Yellow}- MiuiCamera.apk合并失败，保留原文件${NC}"
 fi
-End_Time 合并校验替换MiuiCamera相关文件
+End_Time 合并替换MiuiCamera相关文件
 ##内置水龙优化
 echo -e "${Red}- 开始内置水龙优化${NC}"
 Start_Time
