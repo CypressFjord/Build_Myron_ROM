@@ -26,6 +26,17 @@ persist.sys.ssr.enable_debug=0
 persist.vendor.sys.rawdump_copy=0
 vendor.bluetooth.startbtlogger=0
 persist.iorapd.log.verbose=false
+#状态栏防烧
+persist.sys.screen_anti_burn_enabled=true
+#系统界面wm.shell窗口管理器冷启动遮罩
+persist.sys.transition_rt.enable=true
+persist.sys.transition_beginSchedThreads.enable=true
+#aptX
+persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support=true
+#Hearing Aid Profile助听器协议
+bluetooth.profile.hap.client.enabled=true
+#WIFI相关
+wifi.supplicant_scan_interval=250
 #过渡动画
 persist.sys.transition_rt.enable=true
 persist.sys.transition_beginSchedThreads.enable=true
@@ -37,6 +48,7 @@ persist.vendor.ssr.enable_ramdumps=0
 persist.sys.trim_rendernode.enable=true
 #Surfaceflinger
 debug.sf.hw=1
+ro.miui.surfaceflinger_affinity=true
 debug.sf.enable_transaction_tracing=false
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 #debug
