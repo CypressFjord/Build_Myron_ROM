@@ -284,36 +284,6 @@ else
 fi
 End_Time 添加REDMIK90ProMaxPatch
 End_Time 修改myron.xml
-#检测并添加WRITE_MEDIA_STORAGE权限
-echo -e "${Red}- 开始检测并添加WRITE_MEDIA_STORAGE权限${NC}"
-Start_Time
-privapp_xml="$GITHUB_WORKSPACE"/images/product/etc/permissions/privapp-permissions-product.xml
-if [ -f "$privapp_xml" ]; then
-    if awk '
-        /<privapp-permissions package="com.miui.securitycenter">/ { inblock=1 }
-        inblock && /<permission name="android.permission.WRITE_MEDIA_STORAGE" \/>/ { found=1; exit }
-        inblock && /<\/privapp-permissions>/ { exit }
-        END { exit !found }
-    ' "$privapp_xml"; then
-        echo -e "${Yellow}- 跳过: WRITE_MEDIA_STORAGE权限存在${NC}"
-    else
-        awk '
-        /<privapp-permissions package="com.miui.securitycenter">/ { inblock=1; found=0 }
-        inblock && /<permission name="android.permission.WRITE_MEDIA_STORAGE" \/>/ { found=1 }
-        inblock && /<\/privapp-permissions>/ {
-            if (!found) {
-                print "      <permission name=\"android.permission.WRITE_MEDIA_STORAGE\" />"
-            }
-            inblock=0
-        }
-        { print }
-        ' "$privapp_xml" > "${privapp_xml}.tmp" && mv "${privapp_xml}.tmp" "$privapp_xml"
-        echo -e "${Green}- 已添加WRITE_MEDIA_STORAGE权限${NC}"
-    fi
-else
-    echo -e "${Yellow}- 警告: 未找到privapp-permissions-product.xml，跳过此步骤${NC}"
-fi
-End_Time 检测并添加WRITE_MEDIA_STORAGE权限
 #合并替换MiuiCamera相关文件
 echo -e "${Red}- 开始合并替换MiuiCamera相关文件${NC}"
 Start_Time
@@ -339,21 +309,6 @@ End_Time 合并替换MiuiCamera相关文件
 ##内置水龙优化
 echo -e "${Red}- 开始内置水龙优化${NC}"
 Start_Time
-#处理cpq调速器
-echo -e "${Red}- 开始处理cpq调速器${NC}"
-Start_Time
-RC_FILE="$GITHUB_WORKSPACE/images/vendor/etc/init/hw/init.qti.kernel.rc"
-ANCHOR='write /sys/block/sda/queue/scheduler cpq'
-if [ -f "$RC_FILE" ] && grep -qF 'iosched/read_expire 4' "$RC_FILE"; then
-    echo -e "${Yellow}- 跳过: cpq调速器参数已处理过${NC}"
-elif [ -f "$RC_FILE" ] && grep -qF "$ANCHOR" "$RC_FILE"; then
-    sed -i "/${ANCHOR//\//\\/}/a\\
-    write /sys/block/sda/queue/iosched/prio_aging_expire 200" "$RC_FILE"
-    echo -e "${Green}- 成功处理cpq调速器${NC}"
-else
-    echo -e "${Yellow}- 警告: 未找到cpq锚点或文件不存在${NC}"
-fi
-End_Time 处理cpq调速器
 #关闭F2FS iostat减少读写时锁争用
 Start_Time
 echo -e "${Red}- 开始关闭F2FS iostat减少读写时锁争用${NC}"
@@ -450,10 +405,8 @@ End_Time 处理IMG文件
 echo -e "${Red}- 开始精简apk${NC}"
 Start_Time
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/AnalyticsCore
-rm -rf "$GITHUB_WORKSPACE"/images/product/app/BSGameCenter
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/HybridPlatform
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/MiTrustService
-rm -rf "$GITHUB_WORKSPACE"/images/product/app/MIUIAccessibility
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/MIUIgreenguard
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/MIUISecurityInputMethod
 rm -rf "$GITHUB_WORKSPACE"/images/product/app/SogouIME
@@ -478,7 +431,6 @@ rm -rf "$GITHUB_WORKSPACE"/images/product/data-app/MIUIXiaoAiSpeechEngine
 rm -rf "$GITHUB_WORKSPACE"/images/product/data-app/SmartHome
 rm -rf "$GITHUB_WORKSPACE"/images/product/priv-app/MiniGameService
 rm -rf "$GITHUB_WORKSPACE"/images/product/priv-app/MIUIBrowser
-rm -rf "$GITHUB_WORKSPACE"/images/product/priv-app/MiuiHome
 End_Time 精简apk
 End_Time 功能修复
 ###功能修复结束
