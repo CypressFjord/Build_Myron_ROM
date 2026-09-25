@@ -284,6 +284,19 @@ else
 fi
 End_Time 添加REDMIK90ProMaxPatch
 End_Time 修改myron.xml
+#为6.7版本相机添加START_TASKS_FROM_RECENTS权限
+echo -e "${Red}- 开始为6.7版本相机添加START_TASKS_FROM_RECENTS权限${NC}"
+Start_Time
+privapp_xml="$GITHUB_WORKSPACE"/images/product/etc/permissions/privapp-permissions-product.xml
+if [ -f "$privapp_xml" ] && ! sed -n '/<privapp-permissions package="com.android.camera">/,/<\/privapp-permissions>/p' "$privapp_xml" | grep -qF 'START_TASKS_FROM_RECENTS'; then
+    sed -i '/<privapp-permissions package="com.android.camera">/,/<\/privapp-permissions>/{
+        /<\/privapp-permissions>/i\      <permission name="android.permission.START_TASKS_FROM_RECENTS" />
+    }' "$privapp_xml"
+    echo -e "${Green}- 已为6.7版本相机添加START_TASKS_FROM_RECENTS权限${NC}"
+else
+    echo -e "${Yellow}- 跳过: XML文件不存在或START_TASKS_FROM_RECENTS权限已存在${NC}"
+fi
+End_Time 为6.7版本相机添加START_TASKS_FROM_RECENTS权限
 #合并替换MiuiCamera相关文件
 echo -e "${Red}- 开始合并替换MiuiCamera相关文件${NC}"
 Start_Time
