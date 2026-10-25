@@ -267,11 +267,17 @@ echo -e "${Red}- 开始添加REDMI K90 Pro Max Patch${NC}"
 Start_Time
 myron_xml="$GITHUB_WORKSPACE"/images/product/etc/device_features/myron.xml
 if [ -f "$myron_xml" ]; then
-    if grep -qF 'support_video_idle_dim' "$myron_xml"; then
+    if grep -qF 'REDMI K90 Pro Max Patch' "$myron_xml"; then
         echo -e "${Yellow}- 跳过: REDMI K90 Pro Max Patch已存在${NC}"
     else
         sed -i "/<\/features>/{
             i\\    <!-- REDMI K90 Pro Max Patch -->\\
+    <!-- Whether night wakeup mode setting is supported -->\\
+    <bool name=\"support_night_wakeup_mode_setting\">true</bool>\\
+    <!-- Whether to enable the eyecare wave render effect -->\\
+    <bool name=\"enable_eyecare_wave_render\">true</bool>\\
+    <!-- Whether the blue light spectrum can be read from hardware sensor -->\\
+    <bool name=\"support_blue_spectrum_hardware_read\">true</bool>\\
     <!-- Don't let the volume go down when playing videos -->\\
     <bool name=\"support_video_idle_dim\">true</bool>\\
     <!-- REDMI K90 Pro Max Patch END -->
